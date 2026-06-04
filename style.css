@@ -94,40 +94,40 @@ body {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 8px;
+  gap: 20px;
+  padding-bottom: 52px;
 }
 
-/* ── 누끼 사진 (가운데 정렬, 10% 확대) ── */
+/* ── 원형 사진 ── */
 .hero-photo { line-height: 0; }
 
 .hero-photo img {
   width: 198px;
-  height: 264px;
+  height: 198px;
   object-fit: cover;
   object-position: top center;
-  border-radius: 0;
-  border: none;
+  border-radius: 50%;
+  border: 4px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.2),
+              0 8px 32px rgba(0, 0, 0, 0.25);
   display: block;
-  /* 상단도 페이드 → 어두운 배경에 자연스럽게 녹아듦 */
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    transparent 0%, rgba(0,0,0,0.7) 10%,
-    black 24%, black 52%,
-    rgba(0,0,0,0.5) 72%, transparent 92%
-  );
-  mask-image: linear-gradient(
-    to bottom,
-    transparent 0%, rgba(0,0,0,0.7) 10%,
-    black 24%, black 52%,
-    rgba(0,0,0,0.5) 72%, transparent 92%
-  );
-  filter: brightness(0.95) contrast(1.03);
+  -webkit-mask-image: none;
+  mask-image: none;
+  filter: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-photo img:hover {
+  transform: scale(1.04);
+  box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.35),
+              0 12px 40px rgba(0, 0, 0, 0.3);
 }
 
 .photo-placeholder {
   display: none;
   width: 198px;
-  height: 264px;
+  height: 198px;
+  border-radius: 50%;
   align-items: center;
   justify-content: center;
   background: rgba(255,255,255,0.1);
@@ -136,7 +136,7 @@ body {
 
 /* ── Hero 텍스트 ── */
 .hero-info {
-  padding-bottom: 48px;
+  padding-bottom: 0;
 }
 
 .name {
