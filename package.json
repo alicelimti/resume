@@ -4,11 +4,15 @@
   "description": "Personal Resume Website",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build": "node scripts/generate-og.mjs && vite build",
+    "preview": "vite preview",
+    "og": "node scripts/generate-og.mjs"
   },
   "license": "ISC",
   "devDependencies": {
     "vite": "^8.0.16"
+  },
+  "dependencies": {
+    "@napi-rs/canvas": "^1.0.0"
   }
 }
