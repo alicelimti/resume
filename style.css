@@ -370,6 +370,12 @@ body {
   background: var(--event-bg);
 }
 
+.cert-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
 .cert-name {
   font-weight: 600;
   font-size: 0.92rem;
@@ -388,6 +394,12 @@ body {
   border-radius: 50%;
   background: var(--event);
   flex-shrink: 0;
+}
+
+.cert-desc {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  padding-left: 16px;
 }
 
 .cert-date {
