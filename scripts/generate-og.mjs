@@ -108,7 +108,7 @@ function generateOG() {
   // 소속
   ctx.fillStyle = 'rgba(255,255,255,0.55)';
   ctx.font = '28px "Apple SD Gothic Neo", "AppleGothic", sans-serif';
-  ctx.fillText('KB국민은행  ·  숙명여자대학교 경제학부', 112, 470);
+  ctx.fillText('숙명여자대학교 경제학부', 112, 470);
 
   // 우측 뱃지 카드
   roundRect(ctx, 800, 220, 310, 180, 16);
