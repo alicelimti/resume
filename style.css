@@ -6,15 +6,15 @@
 }
 
 :root {
-  --primary: #60a5fa;
-  --primary-light: #eff6ff;
-  --text: #1e293b;
-  --text-muted: #64748b;
-  --bg: #f0f7ff;
+  --primary: #8a7292;
+  --primary-light: #f0eaee;
+  --text: #2e1f32;
+  --text-muted: #7a6880;
+  --bg: #f6f2f5;
   --card-bg: #ffffff;
-  --border: #bfdbfe;
+  --border: #ddd5db;
   --radius: 12px;
-  --shadow: 0 1px 3px rgba(96,165,250,0.08), 0 4px 16px rgba(96,165,250,0.08);
+  --shadow: 0 1px 3px rgba(138,114,146,0.08), 0 4px 16px rgba(138,114,146,0.08);
 }
 
 html {
@@ -31,87 +31,116 @@ body {
 
 /* ===== HERO ===== */
 .hero {
-  background: linear-gradient(135deg, #60a5fa 0%, #93c5fd 50%, #bfdbfe 100%);
-  color: #1e3a5f;
-  padding: 80px 24px 60px;
+  /* 사진 배경색 #d7d0d5 기반 그라데이션 */
+  background: linear-gradient(160deg, #bfb2c2 0%, #d7d0d5 45%, #ede7ec 100%);
+  color: #2e1f32;
+  padding: 60px 24px 0;
 }
 
 .hero-inner {
-  max-width: 800px;
+  max-width: 820px;
   margin: 0 auto;
   display: flex;
-  align-items: center;
-  gap: 40px;
+  align-items: flex-end;
+  gap: 48px;
 }
 
+/* ── 누끼 스타일 사진 ── */
 .hero-photo {
   flex-shrink: 0;
+  line-height: 0;
 }
 
-.hero-photo img,
-.photo-placeholder {
-  width: 130px;
-  height: 130px;
-  border-radius: 50%;
-  border: 4px solid rgba(255,255,255,0.6);
+.hero-photo img {
+  width: 180px;
+  height: 240px;
   object-fit: cover;
+  object-position: top center;
+  border-radius: 0;
+  border: none;
+  display: block;
+  /* 아래로 갈수록 배경에 자연스럽게 녹아드는 페이드 */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    black 0%,
+    black 50%,
+    rgba(0,0,0,0.6) 70%,
+    transparent 92%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    black 0%,
+    black 50%,
+    rgba(0,0,0,0.6) 70%,
+    transparent 92%
+  );
 }
 
 .photo-placeholder {
   display: none;
+  width: 180px;
+  height: 240px;
   align-items: center;
   justify-content: center;
   background: rgba(255,255,255,0.2);
   font-size: 48px;
 }
 
+/* ── 히어로 텍스트 ── */
+.hero-info {
+  padding-bottom: 48px;
+  flex: 1;
+}
+
 .name {
-  font-size: 2.4rem;
+  font-size: 2.6rem;
   font-weight: 700;
   letter-spacing: -0.5px;
   margin-bottom: 6px;
+  color: #1e1222;
 }
 
 .tagline {
-  font-size: 1.1rem;
-  opacity: 0.85;
-  margin-bottom: 20px;
-  font-weight: 300;
+  font-size: 1.05rem;
+  color: #5a4462;
+  margin-bottom: 24px;
+  font-weight: 400;
 }
 
 .contacts {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 10px;
 }
 
 .contacts a {
-  color: #1e3a5f;
+  color: #2e1f32;
   text-decoration: none;
-  font-size: 0.875rem;
-  background: rgba(255,255,255,0.5);
+  font-size: 0.85rem;
+  background: rgba(255,255,255,0.55);
   padding: 6px 14px;
   border-radius: 20px;
   transition: background 0.2s;
+  backdrop-filter: blur(4px);
 }
 
 .contacts a:hover {
-  background: rgba(255,255,255,0.75);
+  background: rgba(255,255,255,0.8);
 }
 
 /* ===== CONTAINER ===== */
 .container {
-  max-width: 800px;
+  max-width: 820px;
   margin: 0 auto;
-  padding: 48px 24px;
+  padding: 52px 24px;
   display: flex;
   flex-direction: column;
-  gap: 48px;
+  gap: 52px;
 }
 
 /* ===== SECTION ===== */
 .section-title {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   font-weight: 700;
   color: var(--primary);
   margin-bottom: 24px;
@@ -254,7 +283,7 @@ body {
 
 .project-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(37,99,235,0.12);
+  box-shadow: 0 8px 24px rgba(138,114,146,0.15);
 }
 
 .project-card h3 {
@@ -325,8 +354,18 @@ body {
 @media (max-width: 640px) {
   .hero-inner {
     flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  .hero-photo img {
+    width: 140px;
+    height: 186px;
+  }
+
+  .hero-info {
     text-align: center;
-    gap: 24px;
+    padding-bottom: 36px;
   }
 
   .contacts {
@@ -334,7 +373,7 @@ body {
   }
 
   .name {
-    font-size: 1.8rem;
+    font-size: 2rem;
   }
 
   .timeline-item {
@@ -342,10 +381,7 @@ body {
     gap: 8px;
   }
 
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
-
+  .projects-grid,
   .skills-grid {
     grid-template-columns: 1fr;
   }

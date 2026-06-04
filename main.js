@@ -85,7 +85,7 @@ if (hero) {
       if (d.y < 0 || d.y > canvas.height) d.dy *= -1;
       ctx.beginPath();
       ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(255,255,255,0.8)';
+      ctx.fillStyle = 'rgba(255,255,255,0.7)';
       ctx.fill();
     });
     // 가까운 점끼리 선 연결
@@ -96,7 +96,7 @@ if (hero) {
           ctx.beginPath();
           ctx.moveTo(dots[i].x, dots[i].y);
           ctx.lineTo(dots[j].x, dots[j].y);
-          ctx.strokeStyle = `rgba(255,255,255,${0.3 * (1 - dist / 90)})`;
+          ctx.strokeStyle = `rgba(200,185,210,${0.4 * (1 - dist / 90)})`;
           ctx.lineWidth = 0.8;
           ctx.stroke();
         }
