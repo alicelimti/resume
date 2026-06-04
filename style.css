@@ -387,16 +387,6 @@ body {
   gap: 8px;
 }
 
-/* 이벤트컬러 뱃지 */
-.cert-name::before {
-  content: '';
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--event);
-  flex-shrink: 0;
-}
 
 .cert-desc {
   font-size: 0.82rem;
