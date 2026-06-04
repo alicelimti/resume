@@ -322,13 +322,15 @@ body {
 
 .project-card:hover {
   transform: translateY(-2px);
-  border-color: var(--primary-50);
-  box-shadow: 0 8px 24px rgba(65,105,225,0.15);
+  border-color: var(--event);
+  background: var(--event-bg);
+  box-shadow: 0 8px 24px rgba(244,114,182,0.18);
 }
 
 @media (prefers-color-scheme: dark) {
   .project-card:hover {
-    box-shadow: 0 8px 24px rgba(123,159,245,0.2);
+    background: var(--event-bg);
+    box-shadow: 0 8px 24px rgba(249,168,212,0.18);
   }
 }
 
