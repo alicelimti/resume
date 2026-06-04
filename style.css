@@ -5,21 +5,64 @@
   padding: 0;
 }
 
+/* =============================================
+   COLOR SYSTEM
+   주컬러    : Royal Blue  #4169E1
+   보조컬러  : Royal Blue 50% opacity
+   이벤트컬러: Light Pink  #f472b6
+   ============================================= */
+
 :root {
-  --primary: #8a7292;
-  --primary-light: #f0eaee;
-  --text: #2e1f32;
-  --text-muted: #7a6880;
-  --bg: #f6f2f5;
-  --card-bg: #ffffff;
-  --border: #ddd5db;
-  --radius: 12px;
-  --shadow: 0 1px 3px rgba(138,114,146,0.08), 0 4px 16px rgba(138,114,146,0.08);
+  /* ── Primary: Royal Blue ── */
+  --primary:        #4169E1;
+  --primary-hover:  #3457c8;
+  --primary-50:     rgba(65, 105, 225, 0.5);
+  --primary-bg:     rgba(65, 105, 225, 0.08);
+  --primary-border: rgba(65, 105, 225, 0.22);
+
+  /* ── Event: Light Pink ── */
+  --event:          #f472b6;
+  --event-bg:       #fce7f3;
+  --event-text:     #be185d;
+
+  /* ── Neutrals ── */
+  --bg:         #f5f6ff;
+  --bg-2:       #eef0ff;
+  --card-bg:    #ffffff;
+  --text:       #111827;
+  --text-muted: #4b5563;
+  --border:     rgba(65, 105, 225, 0.15);
+  --radius:     12px;
+  --shadow:     0 1px 4px rgba(65,105,225,0.08), 0 6px 20px rgba(65,105,225,0.08);
 }
 
-html {
-  scroll-behavior: smooth;
+/* ── Dark Mode ── */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Primary: 어두운 배경에서 가독성을 위해 밝은 로얄블루 */
+    --primary:        #7b9ff5;
+    --primary-hover:  #93b3f8;
+    --primary-50:     rgba(123, 159, 245, 0.5);
+    --primary-bg:     rgba(123, 159, 245, 0.12);
+    --primary-border: rgba(123, 159, 245, 0.25);
+
+    /* Event: 다크모드에서 핑크 유지 */
+    --event:          #f9a8d4;
+    --event-bg:       rgba(249, 168, 212, 0.15);
+    --event-text:     #f9a8d4;
+
+    /* Neutrals Dark */
+    --bg:         #0b0c1e;
+    --bg-2:       #111224;
+    --card-bg:    #161829;
+    --text:       #e8eaf6;
+    --text-muted: #8b8db8;
+    --border:     rgba(123, 159, 245, 0.18);
+    --shadow:     0 1px 4px rgba(0,0,0,0.3), 0 6px 20px rgba(0,0,0,0.3);
+  }
 }
+
+html { scroll-behavior: smooth; }
 
 body {
   font-family: 'Noto Sans KR', 'Inter', sans-serif;
@@ -27,14 +70,21 @@ body {
   color: var(--text);
   line-height: 1.7;
   font-size: 15px;
+  transition: background 0.3s, color 0.3s;
 }
 
 /* ===== HERO ===== */
 .hero {
-  /* 사진 배경색 #d7d0d5 기반 그라데이션 */
   background: linear-gradient(160deg, #bfb2c2 0%, #d7d0d5 45%, #ede7ec 100%);
-  color: #2e1f32;
+  color: #1e1222;
   padding: 60px 24px 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .hero {
+    background: linear-gradient(160deg, #14102a 0%, #1e1630 45%, #261a38 100%);
+    color: var(--text);
+  }
 }
 
 .hero-inner {
@@ -45,11 +95,8 @@ body {
   gap: 48px;
 }
 
-/* ── 누끼 스타일 사진 ── */
-.hero-photo {
-  flex-shrink: 0;
-  line-height: 0;
-}
+/* ── 누끼 사진 ── */
+.hero-photo { flex-shrink: 0; line-height: 0; }
 
 .hero-photo img {
   width: 180px;
@@ -59,21 +106,34 @@ body {
   border-radius: 0;
   border: none;
   display: block;
-  /* 아래로 갈수록 배경에 자연스럽게 녹아드는 페이드 */
   -webkit-mask-image: linear-gradient(
     to bottom,
-    black 0%,
-    black 50%,
-    rgba(0,0,0,0.6) 70%,
-    transparent 92%
+    black 0%, black 50%,
+    rgba(0,0,0,0.55) 72%, transparent 92%
   );
   mask-image: linear-gradient(
     to bottom,
-    black 0%,
-    black 50%,
-    rgba(0,0,0,0.6) 70%,
-    transparent 92%
+    black 0%, black 50%,
+    rgba(0,0,0,0.55) 72%, transparent 92%
   );
+}
+
+@media (prefers-color-scheme: dark) {
+  .hero-photo img {
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent 0%, rgba(0,0,0,0.6) 12%,
+      black 28%, black 50%,
+      rgba(0,0,0,0.5) 70%, transparent 92%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      transparent 0%, rgba(0,0,0,0.6) 12%,
+      black 28%, black 50%,
+      rgba(0,0,0,0.5) 70%, transparent 92%
+    );
+    filter: brightness(0.88) contrast(1.05);
+  }
 }
 
 .photo-placeholder {
@@ -82,11 +142,11 @@ body {
   height: 240px;
   align-items: center;
   justify-content: center;
-  background: rgba(255,255,255,0.2);
+  background: var(--primary-bg);
   font-size: 48px;
 }
 
-/* ── 히어로 텍스트 ── */
+/* ── Hero 텍스트 ── */
 .hero-info {
   padding-bottom: 48px;
   flex: 1;
@@ -100,11 +160,19 @@ body {
   color: #1e1222;
 }
 
+@media (prefers-color-scheme: dark) {
+  .name { color: var(--text); }
+}
+
 .tagline {
   font-size: 1.05rem;
   color: #5a4462;
   margin-bottom: 24px;
   font-weight: 400;
+}
+
+@media (prefers-color-scheme: dark) {
+  .tagline { color: var(--text-muted); }
 }
 
 .contacts {
@@ -117,15 +185,29 @@ body {
   color: #2e1f32;
   text-decoration: none;
   font-size: 0.85rem;
-  background: rgba(255,255,255,0.55);
+  background: rgba(255, 255, 255, 0.55);
   padding: 6px 14px;
   border-radius: 20px;
-  transition: background 0.2s;
+  transition: background 0.2s, color 0.2s;
   backdrop-filter: blur(4px);
 }
 
 .contacts a:hover {
-  background: rgba(255,255,255,0.8);
+  background: var(--primary);
+  color: #fff;
+}
+
+@media (prefers-color-scheme: dark) {
+  .contacts a {
+    color: var(--text);
+    background: rgba(123, 159, 245, 0.18);
+    border: 1px solid var(--primary-border);
+  }
+  .contacts a:hover {
+    background: var(--primary);
+    color: #fff;
+    border-color: transparent;
+  }
 }
 
 /* ===== CONTAINER ===== */
@@ -138,14 +220,14 @@ body {
   gap: 52px;
 }
 
-/* ===== SECTION ===== */
+/* ===== SECTION TITLE ===== */
 .section-title {
   font-size: 1.2rem;
   font-weight: 700;
   color: var(--primary);
   margin-bottom: 24px;
   padding-bottom: 10px;
-  border-bottom: 2px solid var(--primary-light);
+  border-bottom: 2px solid var(--primary-border);
   letter-spacing: -0.2px;
 }
 
@@ -173,10 +255,11 @@ body {
   border-radius: var(--radius);
   padding: 20px;
   box-shadow: var(--shadow);
+  border: 1px solid var(--border);
 }
 
 .skill-group h3 {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.8px;
@@ -184,32 +267,22 @@ body {
   margin-bottom: 12px;
 }
 
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
+.tags { display: flex; flex-wrap: wrap; gap: 8px; }
 
 .tag {
-  background: var(--primary-light);
+  background: var(--primary-bg);
   color: var(--primary);
   padding: 5px 12px;
   border-radius: 20px;
   font-size: 0.82rem;
   font-weight: 500;
+  border: 1px solid var(--primary-border);
 }
 
-.tag-sm {
-  padding: 3px 10px;
-  font-size: 0.78rem;
-}
+.tag-sm { padding: 3px 10px; font-size: 0.78rem; }
 
 /* ===== TIMELINE ===== */
-.timeline {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
+.timeline { display: flex; flex-direction: column; }
 
 .timeline-item {
   display: grid;
@@ -220,9 +293,7 @@ body {
   position: relative;
 }
 
-.timeline-item:last-child {
-  border-bottom: none;
-}
+.timeline-item:last-child { border-bottom: none; }
 
 .timeline-meta {
   display: flex;
@@ -247,6 +318,7 @@ body {
   font-size: 1rem;
   font-weight: 600;
   margin-bottom: 10px;
+  color: var(--text);
 }
 
 .timeline-body ul {
@@ -258,9 +330,7 @@ body {
   gap: 4px;
 }
 
-.timeline-body ul li {
-  line-height: 1.6;
-}
+.timeline-body ul li { line-height: 1.6; }
 
 /* ===== PROJECTS ===== */
 .projects-grid {
@@ -275,7 +345,7 @@ body {
   padding: 24px;
   box-shadow: var(--shadow);
   border: 1px solid var(--border);
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -283,20 +353,18 @@ body {
 
 .project-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(138,114,146,0.15);
+  border-color: var(--primary-50);
+  box-shadow: 0 8px 24px rgba(65,105,225,0.15);
 }
 
-.project-card h3 {
-  font-size: 1rem;
-  font-weight: 700;
+@media (prefers-color-scheme: dark) {
+  .project-card:hover {
+    box-shadow: 0 8px 24px rgba(123,159,245,0.2);
+  }
 }
 
-.project-card p {
-  font-size: 0.88rem;
-  color: var(--text-muted);
-  line-height: 1.7;
-  flex: 1;
-}
+.project-card h3 { font-size: 1rem; font-weight: 700; color: var(--text); }
+.project-card p  { font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; flex: 1; }
 
 .project-link {
   font-size: 0.85rem;
@@ -306,17 +374,16 @@ body {
   align-self: flex-start;
 }
 
-.project-link:hover {
-  text-decoration: underline;
-}
+.project-link:hover { text-decoration: underline; }
 
-/* ===== CERTIFICATES ===== */
+/* ===== CERTIFICATES — 이벤트컬러 적용 ===== */
 .cert-list {
   list-style: none;
   background: var(--card-bg);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   overflow: hidden;
+  border: 1px solid var(--border);
 }
 
 .cert-list li {
@@ -325,20 +392,39 @@ body {
   align-items: center;
   padding: 16px 24px;
   border-bottom: 1px solid var(--border);
+  transition: background 0.18s;
 }
 
-.cert-list li:last-child {
-  border-bottom: none;
+.cert-list li:last-child { border-bottom: none; }
+
+.cert-list li:hover {
+  background: var(--event-bg);
 }
 
 .cert-name {
-  font-weight: 500;
+  font-weight: 600;
   font-size: 0.92rem;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* 이벤트컬러 뱃지 */
+.cert-name::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--event);
+  flex-shrink: 0;
 }
 
 .cert-date {
   font-size: 0.82rem;
   color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
 }
 
 /* ===== FOOTER ===== */
@@ -348,6 +434,7 @@ body {
   color: var(--text-muted);
   font-size: 0.85rem;
   border-top: 1px solid var(--border);
+  background: var(--bg-2);
 }
 
 /* ===== RESPONSIVE ===== */
@@ -358,33 +445,18 @@ body {
     gap: 0;
   }
 
-  .hero-photo img {
-    width: 140px;
-    height: 186px;
-  }
+  .hero-photo img { width: 140px; height: 186px; }
 
   .hero-info {
     text-align: center;
     padding-bottom: 36px;
   }
 
-  .contacts {
-    justify-content: center;
-  }
+  .contacts { justify-content: center; }
+  .name { font-size: 2rem; }
 
-  .name {
-    font-size: 2rem;
-  }
-
-  .timeline-item {
-    grid-template-columns: 1fr;
-    gap: 8px;
-  }
-
-  .projects-grid,
-  .skills-grid {
-    grid-template-columns: 1fr;
-  }
+  .timeline-item { grid-template-columns: 1fr; gap: 8px; }
+  .projects-grid, .skills-grid { grid-template-columns: 1fr; }
 }
 
 /* ===== ANIMATIONS ===== */
@@ -393,6 +465,4 @@ body {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-.section {
-  animation: fadeInUp 0.5s ease both;
-}
+.section { animation: fadeInUp 0.5s ease both; }
