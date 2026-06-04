@@ -85,8 +85,7 @@ if (hero) {
       if (d.y < 0 || d.y > canvas.height) d.dy *= -1;
       ctx.beginPath();
       ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
-      const dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      ctx.fillStyle = dark ? 'rgba(123,159,245,0.6)' : 'rgba(255,255,255,0.75)';
+      ctx.fillStyle = 'rgba(255,255,255,0.6)';
       ctx.fill();
     });
     // 가까운 점끼리 선 연결
@@ -94,14 +93,11 @@ if (hero) {
       for (let j = i + 1; j < dots.length; j++) {
         const dist = Math.hypot(dots[i].x - dots[j].x, dots[i].y - dots[j].y);
         if (dist < 90) {
-          const dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-          const alpha = 0.4 * (1 - dist / 90);
+          const alpha = 0.35 * (1 - dist / 90);
           ctx.beginPath();
           ctx.moveTo(dots[i].x, dots[i].y);
           ctx.lineTo(dots[j].x, dots[j].y);
-          ctx.strokeStyle = dark
-            ? `rgba(123,159,245,${alpha})`
-            : `rgba(200,185,210,${alpha})`;
+          ctx.strokeStyle = `rgba(180,200,255,${alpha})`;
           ctx.lineWidth = 0.8;
           ctx.stroke();
         }
