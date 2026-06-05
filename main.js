@@ -1,8 +1,7 @@
 // ── Hero: 요소별 순차 페이드인 ──────────────────────────
 const heroEls = [
   document.querySelector('.hero-photo'),
-  document.querySelector('.name'),
-  document.querySelector('.tagline'),
+  document.querySelector('.greeting'),
   document.querySelector('.contacts'),
 ];
 
@@ -17,21 +16,21 @@ heroEls.forEach((el, i) => {
   }, 200 + i * 180);
 });
 
-// ── Hero: 타이핑 효과 (tagline) ─────────────────────────
-const tagline = document.querySelector('.tagline');
-if (tagline) {
-  const text = tagline.textContent.trim();
-  tagline.textContent = '';
-
+// ── Hero: 타이핑 효과 ("안녕하세요 임윤서입니다") ─────────
+const greeting = document.querySelector('.greeting');
+if (greeting) {
+  const fullText = '안녕하세요 임윤서입니다';
   let index = 0;
+
   const type = () => {
-    if (index < text.length) {
-      tagline.textContent += text[index++];
-      setTimeout(type, 60);
-    }
+    index++;
+    const typed = fullText.slice(0, index);
+    // 임윤서 부분만 굵게
+    greeting.innerHTML = typed.replace('임윤서', '<strong>임윤서</strong>');
+    if (index < fullText.length) setTimeout(type, 80);
   };
-  // 페이드인 딜레이 이후 타이핑 시작
-  setTimeout(type, 200 + 1 * 180 + 300);
+
+  setTimeout(type, 200 + 1 * 180 + 200);
 }
 
 // ── Hero: 프로필 사진 마우스 호버 틸트 ──────────────────
