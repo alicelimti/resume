@@ -75,14 +75,18 @@ body {
 
 /* ===== HERO ===== */
 .hero {
-  background: linear-gradient(160deg, #0D2D84 0%, #1540a8 55%, #1e4cc0 100%);
+  background:
+    linear-gradient(to bottom, transparent 50%, #f5f6ff 100%),
+    linear-gradient(160deg, #0D2D84 0%, #1540a8 55%, #1e4cc0 100%);
   color: #ffffff;
   padding: 60px 24px 0;
 }
 
 @media (prefers-color-scheme: dark) {
   .hero {
-    background: linear-gradient(160deg, #060f2e 0%, #0D2D84 55%, #112faa 100%);
+    background:
+      linear-gradient(to bottom, transparent 50%, #0b0c1e 100%),
+      linear-gradient(160deg, #060f2e 0%, #0D2D84 55%, #112faa 100%);
     color: #ffffff;
   }
 }
