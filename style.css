@@ -250,6 +250,8 @@ body {
 
 .tag-sm { padding: 3px 10px; font-size: 0.78rem; }
 
+.tag-plain { background: transparent; border-color: transparent; padding-left: 0; padding-right: 0; }
+
 /* ===== TIMELINE ===== */
 .timeline { display: flex; flex-direction: column; }
 
