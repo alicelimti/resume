@@ -79,64 +79,37 @@ function generateOG() {
     ctx.fill();
   });
 
-  // 왼쪽 포인트 바
-  const bar = ctx.createLinearGradient(0, 200, 0, 430);
-  bar.addColorStop(0, '#f472b6');
-  bar.addColorStop(1, 'rgba(244,114,182,0)');
-  ctx.fillStyle = bar;
-  ctx.fillRect(80, 200, 5, 230);
+  // 중앙 정렬 텍스트
+  ctx.textAlign = 'center';
 
-  // 이름 "임윤서"
-  ctx.fillStyle = '#ffffff';
-  ctx.font = 'bold 108px "Apple SD Gothic Neo", "AppleGothic", sans-serif';
-  ctx.textAlign = 'left';
-  ctx.fillText('임윤서', 112, 318);
+  // "안녕하세요"
+  ctx.fillStyle = 'rgba(255,255,255,0.88)';
+  ctx.font = '62px "Apple SD Gothic Neo", "AppleGothic", sans-serif';
+  ctx.fillText('안녕하세요', W / 2, 240);
 
-  // 핑크 구분선
-  ctx.strokeStyle = 'rgba(244,114,182,0.7)';
+  // 핑크 포인트 선
+  ctx.strokeStyle = 'rgba(244,114,182,0.6)';
   ctx.lineWidth = 2;
   ctx.beginPath();
-  ctx.moveTo(112, 345);
-  ctx.lineTo(560, 345);
+  ctx.moveTo(W / 2 - 120, 275);
+  ctx.lineTo(W / 2 + 120, 275);
   ctx.stroke();
 
-  // "금융전문가"
-  ctx.fillStyle = 'rgba(255,255,255,0.92)';
-  ctx.font = '52px "Apple SD Gothic Neo", "AppleGothic", sans-serif';
-  ctx.fillText('금융전문가', 112, 415);
+  // "임윤서" (굵게, 크게)
+  ctx.fillStyle = '#ffffff';
+  ctx.font = 'bold 148px "Apple SD Gothic Neo", "AppleGothic", sans-serif';
+  ctx.fillText('임윤서', W / 2, 420);
 
-  // 소속
-  ctx.fillStyle = 'rgba(255,255,255,0.55)';
-  ctx.font = '28px "Apple SD Gothic Neo", "AppleGothic", sans-serif';
-  ctx.fillText('숙명여자대학교 경제학부', 112, 470);
+  // 인스타그램 아이디
+  ctx.fillStyle = 'rgba(255,255,255,0.5)';
+  ctx.font = '30px "Apple SD Gothic Neo", "AppleGothic", sans-serif';
+  ctx.fillText('@limyuunseo', W / 2, 500);
 
-  // 우측 뱃지 카드
-  roundRect(ctx, 800, 220, 310, 180, 16);
-  ctx.fillStyle = 'rgba(255,255,255,0.08)';
-  ctx.fill();
-  roundRect(ctx, 800, 220, 310, 180, 16);
-  ctx.strokeStyle = 'rgba(255,255,255,0.15)';
-  ctx.lineWidth = 1;
-  ctx.stroke();
-
-  ctx.fillStyle = 'rgba(244,114,182,0.9)';
-  ctx.font = 'bold 22px "Apple SD Gothic Neo", "AppleGothic", sans-serif';
-  ctx.textAlign = 'center';
-  ctx.fillText('RESUME', 955, 295);
-
-  ctx.fillStyle = 'rgba(255,255,255,0.85)';
-  ctx.font = '18px "Apple SD Gothic Neo", "AppleGothic", sans-serif';
-  ctx.fillText('alicelimti.github.io/day3', 955, 335);
-
-  ctx.fillStyle = 'rgba(255,255,255,0.45)';
-  ctx.font = '15px "Apple SD Gothic Neo", "AppleGothic", sans-serif';
-  ctx.fillText('2026', 955, 370);
-
-  // 하단 바
+  // 하단 핑크 바
   const footer = ctx.createLinearGradient(0, 0, W, 0);
-  footer.addColorStop(0, '#f472b6');
-  footer.addColorStop(0.5, '#4169E1');
-  footer.addColorStop(1, '#0D2D84');
+  footer.addColorStop(0, 'rgba(244,114,182,0)');
+  footer.addColorStop(0.5, '#f472b6');
+  footer.addColorStop(1, 'rgba(244,114,182,0)');
   ctx.fillStyle = footer;
   ctx.fillRect(0, 610, W, 20);
 
