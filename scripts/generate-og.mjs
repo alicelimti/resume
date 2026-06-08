@@ -42,76 +42,16 @@ function generateOG() {
   const canvas = createCanvas(W, H);
   const ctx = canvas.getContext('2d');
 
-  // 배경 그라데이션
-  const bg = ctx.createLinearGradient(0, 0, W, H);
-  bg.addColorStop(0,   '#0a2070');
-  bg.addColorStop(0.5, '#0D2D84');
-  bg.addColorStop(1,   '#1640a8');
-  ctx.fillStyle = bg;
+  // 로얄블루 단색 배경
+  ctx.fillStyle = '#4169E1';
   ctx.fillRect(0, 0, W, H);
 
-  // 장식 원 (우상단)
-  ctx.beginPath();
-  ctx.arc(1120, -30, 280, 0, Math.PI * 2);
-  ctx.fillStyle = 'rgba(255,255,255,0.05)';
-  ctx.fill();
-
-  ctx.beginPath();
-  ctx.arc(1120, -30, 180, 0, Math.PI * 2);
-  ctx.fillStyle = 'rgba(255,255,255,0.05)';
-  ctx.fill();
-
-  // 장식 원 (좌하단)
-  ctx.beginPath();
-  ctx.arc(80, 680, 220, 0, Math.PI * 2);
-  ctx.fillStyle = 'rgba(255,255,255,0.04)';
-  ctx.fill();
-
-  // 파티클 점
-  const dots = [
-    [920,480],[960,510],[900,530],[980,480],
-    [240,120],[200,160],[260,150],[220,100],
-  ];
-  dots.forEach(([x, y]) => {
-    ctx.beginPath();
-    ctx.arc(x, y, 3, 0, Math.PI * 2);
-    ctx.fillStyle = 'rgba(255,255,255,0.25)';
-    ctx.fill();
-  });
-
-  // 중앙 정렬 텍스트
+  // "임윤서입니다" 중앙 정렬
   ctx.textAlign = 'center';
-
-  // "안녕하세요"
-  ctx.fillStyle = 'rgba(255,255,255,0.88)';
-  ctx.font = '62px "Apple SD Gothic Neo", "AppleGothic", sans-serif';
-  ctx.fillText('안녕하세요', W / 2, 240);
-
-  // 핑크 포인트 선
-  ctx.strokeStyle = 'rgba(244,114,182,0.6)';
-  ctx.lineWidth = 2;
-  ctx.beginPath();
-  ctx.moveTo(W / 2 - 120, 275);
-  ctx.lineTo(W / 2 + 120, 275);
-  ctx.stroke();
-
-  // "임윤서" (굵게, 크게)
+  ctx.textBaseline = 'middle';
   ctx.fillStyle = '#ffffff';
   ctx.font = 'bold 148px "Apple SD Gothic Neo", "AppleGothic", sans-serif';
-  ctx.fillText('임윤서', W / 2, 420);
-
-  // 인스타그램 아이디
-  ctx.fillStyle = 'rgba(255,255,255,0.5)';
-  ctx.font = '30px "Apple SD Gothic Neo", "AppleGothic", sans-serif';
-  ctx.fillText('@limyuunseo', W / 2, 500);
-
-  // 하단 핑크 바
-  const footer = ctx.createLinearGradient(0, 0, W, 0);
-  footer.addColorStop(0, 'rgba(244,114,182,0)');
-  footer.addColorStop(0.5, '#f472b6');
-  footer.addColorStop(1, 'rgba(244,114,182,0)');
-  ctx.fillStyle = footer;
-  ctx.fillRect(0, 610, W, 20);
+  ctx.fillText('임윤서입니다', W / 2, H / 2);
 
   writeFileSync(`${publicDir}/og-image.png`, canvas.toBuffer('image/png'));
   console.log('✅ og-image.png 생성 완료');
