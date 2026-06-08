@@ -86,4 +86,3 @@ function generateFavicon() {
 }
 
 generateOG();
-generateFavicon();
